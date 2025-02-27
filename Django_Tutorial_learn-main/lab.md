@@ -121,3 +121,76 @@ Apply migrations and start the server:
 python manage.py migrate
 python manage.py runserver
 ```
+
+
+
+
+Steps to Build a Debugging Web Application in Django
+Create a Django Project: Start by creating a Django project. If you haven't done that yet, run the following commands:
+
+bash
+Copy
+django-admin startproject debug_app
+cd debug_app
+Create a Django App: Now, create an app where the web application logic will reside:
+
+bash
+Copy
+python manage.py startapp main
+Configure settings.py: Open debug_app/settings.py and ensure the DEBUG mode is turned on. By default, Django sets DEBUG = True for development purposes, but you can verify it here.
+
+python
+Copy
+DEBUG = True  # Make sure this is set to True during development
+Set Up URL Patterns: Open debug_app/urls.py and add the main app to the URL configurations:
+
+python
+Copy
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('main.urls')),  # Include the URLs from the 'main' app
+]
+Create main/urls.py: Inside the main app directory, create a urls.py file to define the URLs for the views that will trigger errors and exceptions.
+
+main/urls.py:
+
+python
+Copy
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('error/', views.error_view, name='error_view'),  # Add an endpoint that causes an error
+]
+Create Views to Trigger Errors: Open main/views.py and create two views:
+
+One view (index) that works correctly.
+One view (error_view) that intentionally triggers an error.
+main/views.py:
+
+python
+Copy
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+    # A view that works fine
+    return HttpResponse("Welcome to the Debugging App!")
+
+def error_view(request):
+    # A view that intentionally causes a ZeroDivisionError
+    result = 1 / 0  # This will raise a ZeroDivisionError and trigger Django's debugging page
+    return HttpResponse(f"Result: {result}")
+Run the Development Server: With Django’s DEBUG = True, Django will display detailed error pages for any unhandled exceptions. Start the development server:
+
+bash
+Copy
+python manage.py runserver
+Access Your Application:
+
+Open a browser and go to http://127.0.0.1:8000/ to see the working view.
+To see the debugging page, go to http://127.0.0.1:8000/error/. This will trigger a ZeroDivisionError, and Django will display its built-in error page with a traceback and debugging information.
