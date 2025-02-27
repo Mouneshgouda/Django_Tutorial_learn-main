@@ -143,7 +143,7 @@ cd debug_app
 
 python manage.py startapp main
 ```
--Configure settings.py:
+- Configure settings.py:
 - Open debug_app/settings.py and ensure the DEBUG mode is turned on. 
 - By default, Django sets DEBUG = True for development purposes, but you can verify it here.
  ```python
