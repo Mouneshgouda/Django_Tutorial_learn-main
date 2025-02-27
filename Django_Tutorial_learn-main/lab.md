@@ -1,3 +1,7 @@
+```
+python -m venv myenv
+virtualenv myenv
+myenv\Scripts\activate
 
 ```python
 pip install django
