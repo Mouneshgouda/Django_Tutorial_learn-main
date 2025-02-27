@@ -1,0 +1,45 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function fullName() {
+//var fname= document.getElementById("fname").value;
+//var lname= document.getElementById("lname").value;
+//var fullname={%url "python_funct"%}
+
+//ajax call to python function
+//$("#datadiv").find("select, textarea, input").serialize()
+$.ajax({data:$("#datadiv").find("input").serialize(),
+url: "{% url 'python_funct' %}",
+type: "GET",
+success: successFunc,
+error: errorFunc
+});
+
+function successFunc(response) {
+        //alert('ok');
+        document.getElementById("p1").innerHTML = response.fullname;
+    }
+function errorFunc() {
+        alert('error');
+    }
+
+//fullname=2;
+//var fullname=2;
+
+}
+</script>
+</head>
+
+<body>
+
+<div align=center id="datadiv">
+<p>Hello!</p>
+First Name :<input type=text name=fname id=fname><br>
+Last Name  :<input type=text name=lname id=lname><br>
+<button onclick="fullName()">What's full name?</button>
+<p id="p1">t</p>
+<div>
+
+</body>
+</html>
