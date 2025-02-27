@@ -128,9 +128,10 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-###lab 2
+### lab 2
 - Steps to Build a Debugging Web Application in Django
-  Create a Django Project: Start by creating a Django project. If you haven't done that yet, run the following commands:
+- Create a Django Project: Start by creating a Django project.
+- If you haven't done that yet, run the following commands:
 ```python
 
 django-admin startproject debug_app
@@ -143,7 +144,8 @@ cd debug_app
 python manage.py startapp main
 ```
 -Configure settings.py:
- Open debug_app/settings.py and ensure the DEBUG mode is turned on. By default, Django sets DEBUG = True for development purposes, but you can verify it here.
+- Open debug_app/settings.py and ensure the DEBUG mode is turned on. 
+- By default, Django sets DEBUG = True for development purposes, but you can verify it here.
  ```python
 DEBUG = True  # Make sure this is set to True during development
 
@@ -160,7 +162,8 @@ urlpatterns = [
 ]
 ```
 
-- Create main/urls.py: Inside the main app directory, create a urls.py file to define the URLs for the views that will trigger errors and exceptions.
+- Create main/urls.py:
+-  Inside the main app directory, create a urls.py file to define the URLs for the views that will trigger errors and exceptions.
   main/urls.py:
 
 ``` from django.urls import path
@@ -172,11 +175,12 @@ urlpatterns = [
 ]
 ```
 
-- Create Views to Trigger Errors: Open main/views.py and create two views:
+- Create Views to Trigger Errors:
+- Open main/views.py and create two views:
 
- One view (index) that works correctly.
- One view (error_view) that intentionally triggers an error.
- main/views.py:
+- One view (index) that works correctly.
+- One view (error_view) that intentionally triggers an error.
+  main/views.py:
 
  ``` python
 from django.shortcuts import render
