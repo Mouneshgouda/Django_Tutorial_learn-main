@@ -1,7 +1,7 @@
-```python 
-python -m venv myenv
+```python
+pip install virtualenv
 
-virtualenv myenv
+python -m venv myenv
 
 myenv\Scripts\activate
 
