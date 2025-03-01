@@ -132,6 +132,17 @@ python manage.py runserver
 - Steps to Build a Debugging Web Application in Django
 - Create a Django Project: Start by creating a Django project.
 - If you haven't done that yet, run the following commands:
+
+```python
+pip install virtualenv
+
+python -m venv myenv
+
+myenv\Scripts\activate
+
+
+pip install django
+```
 ```python
 
 django-admin startproject debug_app
