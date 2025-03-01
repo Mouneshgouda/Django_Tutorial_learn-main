@@ -178,6 +178,7 @@ urlpatterns = [
   main/urls.py:
 
 ``` from django.urls import path
+```python
 from . import views
 
 urlpatterns = [
