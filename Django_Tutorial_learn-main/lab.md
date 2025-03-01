@@ -177,7 +177,7 @@ urlpatterns = [
 -  Inside the main app directory, create a urls.py file to define the URLs for the views that will trigger errors and exceptions.
   main/urls.py:
 
-``` from django.urls import path
+from django.urls import path
 ```python
 from . import views
 
