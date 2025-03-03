@@ -180,6 +180,13 @@ urlpatterns = [
 from django.urls import path
 ```python
 from . import views
+from django.urls import path, include
+
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('error/', views.error_view, name='error_view'),  # Add an endpoint that causes an error
+]
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -199,13 +206,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    # A view that works fine
-    return HttpResponse("Welcome to the Debugging App!")
+   return HttpResponse("Welcome to the Debugging App!")
 
 def error_view(request):
-    # A view that intentionally causes a ZeroDivisionError
-    result = 1 / 0  # This will raise a ZeroDivisionError and trigger Django's debugging page
-    return HttpResponse(f"Result: {result}")
+   try:
+       result = 1 / 0  # This will raise a ZeroDivisionError
+   except ZeroDivisionError as e:
+       # Handle the error, log it, or display a friendly error message
+       return HttpResponse("Oops! Something went wrong. Please try again later.")
+
 ```
 - Run the Development Server: With Django’s DEBUG = True, Django will display detailed error pages for any unhandled exceptions. Start the development server:
   ``` python
