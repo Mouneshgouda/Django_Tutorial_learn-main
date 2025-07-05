@@ -90,3 +90,24 @@ False
  When you run migrate, Django examines the migration files and applies the necessary changes to the database schema to reflect the changes in your models.
  migrate is responsible for creating, updating, or deleting database tables, fields, and indexes based on the migration files.
  It ensures that the database schema is consistent with the state of your models and migrations.
+
+```
+- python -m django-admin startproject mysitee
+
+-python -m django startproject mysite
+
+cd mysite
+
+python -m django startapp blog
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py runserver
+
+python manage.py createsuperuser
+
+python manage.py runserver
+
+
