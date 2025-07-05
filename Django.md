@@ -2,15 +2,23 @@
 
 ```python
 pip install virtualenv  
-virtualenv venv   
-venv\Scripts\activate
-
-
-source venv/bin/activate
-
+python -m venv env
+.\env\Scripts\activate
 
 
 pip install django
+
+
+# Create the Django project (same as django-admin startproject)
+python -m django startproject mysite
+
+# Move into the project directory
+cd mysite
+
+# Create the Django app (same as django-admin startapp)
+python -m django startapp blog
+
+
 ```
 
 
@@ -207,54 +215,6 @@ urlpatterns = [
 </html>
 ```
 
-### 🎯 Folder Setup
-
-```python
-django-admin startproject mysite
-cd mysite
-python manage.py startapp blog
-```
-
-
-
-
-
-## 🔧 1. mysite/settings.py
-Add 'blog' in INSTALLED_APPS:
-
-```python
-INSTALLED_APPS = [
-    ...
-    'blog',
-]
-```
-
-
-## 🌐 2. mysite/urls.py
-```python
-
-from django.contrib import admin
-from django.urls import path, include
-
-urlpatterns = [
-    path('', include('blog.urls')),
-]
-```
-
-
-## 🌍 3. blog/urls.py
-```python
-
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('', views.post_list, name='post_list'),
-    path('add/', views.add_post, name='add_post'),
-    path('post/<int:id>/', views.post_detail, name='post_detail'),
-]
-```
-
 ### 🧠 4. blog/views.py (No DB, just memory list)
 
 ```python
@@ -305,76 +265,4 @@ mkdir -p blog/templates/blog
 </body>
 </html>
 ```
-
-```python
-## ✅ add_post.html
-
-
-<!DOCTYPE html>
-<html>
-<head><title>Add Post</title></head>
-<body>
-    <h1>Add New Post</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <input type="text" name="title" placeholder="Title"><br><br>
-        <textarea name="content" placeholder="Content"></textarea><br><br>
-        <button type="submit">Submit</button>
-    </form>
-    <a href="/">Back to posts</a>
-</body>
-</html>
-```
-
-```python
-## ✅ post_detail.html
-
-<!DOCTYPE html>
-<html>
-<head><title>{{ post.title }}</title></head>
-<body>
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.content }}</p>
-    <a href="/">Back to posts</a>
-</body>
-</html>
-```
-### 🚀 Run the App
-```python
-python manage.py runserver
-```
-
-
-## Boostrap
-```python
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home</title>
-    <!-- ✅ Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
-
-    <div class="container mt-5 text-center">
-        <h1 class="mb-4 text-primary">👋 Hello from Home Page</h1>
-
-        <!-- Navigation Links -->
-        <div class="btn-group" role="group" aria-label="Navigation">
-            <a href="/about/" class="btn btn-outline-primary">About</a>
-            <a href="/contact/" class="btn btn-outline-success">Contact</a>
-            <a href="/feedback/" class="btn btn-outline-warning">Feedback</a>
-        </div>
-    </div>
-
-    <!-- ✅ Bootstrap JS (Optional, for interactivity like dropdowns) -->
-</body>
-</html>
-
-
-```
-
-
-
 
